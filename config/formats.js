@@ -5,8 +5,30 @@
 
 exports.Formats = [
 
+	// SM AWOAT
+	///////////////////////////////////////////////////////////////////
+	
+	{
+		section: "SM AWOAT",
+	},
+	{
+		name: "[Gen 7] OU Testbed",
+		desc: ["Testbed, where various things are tried."],
+		
+		mod: 'gen7',
+		ruleset: ['[Gen 7] OU'],
+		teamLength: {
+			validate: [6, 6],
+			battle: 1,
+		},
+		onSwitchIn: function (pokemon) {
+			console.log('Switched in');
+		},
+	},
+	
 	// SM Singles
 	///////////////////////////////////////////////////////////////////
+	
 	{
 		section: "SM Singles",
 	},
