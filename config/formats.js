@@ -11,18 +11,28 @@ exports.Formats = [
 	{
 		section: "SM AWOAT",
 	},
+	/*
 	{
 		name: "[Gen 7] OU Testbed",
 		desc: ["Testbed, where various things are tried."],
 		
 		mod: 'gen7',
-		ruleset: ['[Gen 7] OU'],
+		ruleset: ['[Gen 7] OU'],	
+	},
+	*/
+	{
+		name: "[Gen 7] OU Testbed",
+		desc: ["Testbed, where various things are tried."],
+		
+		mod: 'gen7',
+		ruleset: ['[Gen 7] OU', 'Chimera Select'],
 		teamLength: {
 			validate: [6, 6],
 			battle: 1,
 		},
-		onSwitchIn: function (pokemon) {
-			console.log('Switched in');
+		onStart: function() {
+			this.p1.chimera = {};
+			this.p2.chimera = {};
 		},
 	},
 	{

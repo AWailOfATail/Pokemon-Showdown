@@ -459,7 +459,10 @@ class Side {
 		if (this.currentRequest !== 'teampreview') {
 			return this.emitChoiceError(`Can't choose for Team Preview: You're not in a Team Preview phase`);
 		}
-
+		
+		// For Testbed
+		if (this.battle.getFormat().name.includes('Testbed')) console.log('choose team');
+		
 		for (const pos of positions) {
 			const index = this.choice.actions.length;
 			if (index >= this.maxTeamSize || index >= this.pokemon.length) {
