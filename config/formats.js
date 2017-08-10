@@ -30,10 +30,6 @@ exports.Formats = [
 			validate: [6, 6],
 			battle: 1,
 		},
-		onStart: function() {
-			this.p1.chimera = {};
-			this.p2.chimera = {};
-		},
 	},
 	{
 		name: "[Gen 7] Alphabet Cup",

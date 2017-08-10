@@ -459,10 +459,6 @@ class Side {
 		if (this.currentRequest !== 'teampreview') {
 			return this.emitChoiceError(`Can't choose for Team Preview: You're not in a Team Preview phase`);
 		}
-		
-		// For Testbed
-		if (this.battle.getFormat().name.includes('Testbed')) console.log('choose team');
-		
 		for (const pos of positions) {
 			const index = this.choice.actions.length;
 			if (index >= this.maxTeamSize || index >= this.pokemon.length) {
@@ -486,6 +482,20 @@ class Side {
 				pokemon: this.pokemon[pos],
 				priority: -index,
 			});
+		}
+		
+		// For Testbed
+		if (this.battle.getFormat().name.includes('Testbed')) {
+			this.chimera = this.pokemon[positions[0]];
+			this.chimera.item = this.pokemon[positions[1]].item;
+			this.chimera.setAbility(this.pokemon[positions[2]].ability, this.chimera);
+			console.log(this.pokemon[positions[2]].ability);
+			console.log(this.chimera.ability);
+			this.choice.actions[0].pokemon = this.chimera;
+			console.log(this.chimera.item);
+			this.choice.actions[0].pokemon.setAbility(this.pokemon[positions[2]].ability);
+			
+			// not showing correct ability, but it has it
 		}
 
 		if (this.battle.LEGACY_API_DO_NOT_USE && !this.battle.checkDecisions()) return this;

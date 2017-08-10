@@ -182,6 +182,31 @@ exports.commands = {
 	anagramsolvehelp: [
 		"/as [anagram], [parameter], [parameter], [parameter], ... returns combinations of parameters that work together in the anagram.",
 	],
+	
+	minus: function (target, room, user, connection, cmd, message) {
+		let endStr = '';
+		let parameters = target.split(',');
+		for (let z = 0; z < parameters.length; z++){
+			parameters[z] = parameters[z].trim();
+		}
+		endStr = parameters[0];
+		for (let i = 1; i < parameters.length; i++) {
+			let arg = parameters[i].split('');
+			for (let j = 0; j < arg.length; j++) {
+				if (endStr.indexOf(arg[j]) !== -1) {
+					endStr = endStr.slice(0, endStr.indexOf(arg[j])) + endStr.slice(1 + endStr.indexOf(arg[j]), endStr.length);
+				} else {
+					i = 999;
+					j = 999;
+					endStr = 'nope!!!';
+				}
+			}
+		}
+		this.sendReplyBox(endStr);
+	},
+	minushelp: [
+		"/minus [anagram], [parameter], [parameter], ... returns anagram with letters from all parameters removed."
+	],
 
 	//used for Pokemon Countdown
 	longest: function (target, room, user, connection, cmd, message) {
