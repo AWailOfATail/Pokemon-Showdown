@@ -8,17 +8,6 @@ exports.BattleFormats = {
 	// AWOAT Rulesets
 	///////////////////////////////////////////////////////////////////
 	
-	chimeraselect: {
-		effectType: 'Rule',
-		name: 'Chimera Select',
-		onStartPriority: -999,
-		onStart: function () {
-			console.log('Chimera Select');
-			console.log(this.sides[0].pokemon[0].id);
-			console.log(this.sides[1].pokemon[1].id);
-		},
-	},
-	
 	// Rulesets
 	///////////////////////////////////////////////////////////////////
 
