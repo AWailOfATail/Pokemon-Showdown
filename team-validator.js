@@ -161,6 +161,10 @@ class Validator {
 			return [`The Pokemon "${set.species}" does not exist.`];
 		}
 
+		// Alphabet Cup
+		let alphabetCupLetter = '';
+		if (format.id.includes('alphabet')) alphabetCupLetter = template.speciesid.charAt(0);
+		
 		item = dex.getItem(set.item);
 		if (item.id && !item.exists) {
 			return [`"${set.item}" is an invalid item.`];
@@ -296,6 +300,8 @@ class Validator {
 								continue;
 							}
 						}
+						// Alphabet Cup hack
+						if (format.id.includes('alphabet') && alphabetCupLetter !== '' && alphabetCupLetter === move.id.slice(0,1) && move.id !== 'sketch' && !move.isZ) continue;
 						let problemString = `${name} can't learn ${move.name}`;
 						if (problem.type === 'incompatibleAbility') {
 							problemString = problemString.concat(` because it's incompatible with its ability.`);

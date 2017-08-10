@@ -25,6 +25,27 @@ exports.Formats = [
 			console.log('Switched in');
 		},
 	},
+	{
+		name: "[Gen 7] Alphabet Cup",
+		
+		mod: 'gen7',
+		ruleset: ['Pokemon', 'Team Preview', 'Standard'],
+		banlist: ['Shell Smash', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Mewtwonite X', 'Mewtwonite Y', 'Swoobat',
+			'Arceus', 'Arceus-Bug', 'Arceus-Dark', 'Arceus-Dragon', 'Arceus-Electric', 'Arceus-Fairy', 'Arceus-Fighting', 'Arceus-Fire', 'Arceus-Flying',
+			'Arceus-Ghost', 'Arceus-Grass', 'Arceus-Ground', 'Arceus-Ice', 'Arceus-Poison', 'Arceus-Psychic', 'Arceus-Rock', 'Arceus-Steel', 'Arceus-Water',
+			'Blaziken', 'Blaziken-Mega', 'Darkrai', 'Deoxys', 'Deoxys-Attack', 'Dialga', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Kyogre',
+			'Kyurem-White', 'Lugia', 'Mewtwo', 'Mewtwo-Mega-X', 'Mewtwo-Mega-Y', 'Palkia', 'Rayquaza', 'Reshiram', 'Shaymin-Sky', 'Xerneas', 'Yveltal', 'Zekrom'
+		],
+		onValidateTeam: function (team) {
+			let letters = {};
+			let letter = '';
+			for (let i = 0; i < team.length; i++) {
+				letter = this.getTemplate(team[i].species).baseSpecies.slice(0,1).toUpperCase();
+				if (letter in letters) return ['Your team cannot have more that one Pokémon starting with the letter "' + letter + '".'];
+				letters[letter] = 1;
+			}
+		},
+	},
 	
 	// SM Singles
 	///////////////////////////////////////////////////////////////////
