@@ -10,10 +10,40 @@ exports.commands = {
 
 	//Parameter Functions
 	//~~~~~~~~~~~~~~~~~~~
-
+	
+	//provides combinations within given categories
+	aw: 'anagramwhole',
+	anagramwhole: function (target, room, user, connection, cmd, message) {
+		let exact = false;
+		let endArray = [];
+		let categoriesArray = [];
+		let parameters = target.split(",");
+		for (let z = 0; z < parameters.length; z++) {
+			parameters[z] = parameters[z].trim();
+			if (z > 0) categoriesArray.push([parameters[z], []]);
+		}
+		//inside categoriesArray is now ready to be set up as:
+		//[category, [failed, failed, ...]], [category, [failed, failed, ...]], ...
+		//will take longer, but have function run through all data in Dex until it fails for ALL of them
+		if (parameters[0].indexOf('$') === 0) {
+			parameters[0] = parameters[0].slice(1);
+			exact = true;
+		} 
+		let anagramArray = parameters[0].split("");
+		
+		for (let i = 0; i < categoriesArray.length; i++) {
+			
+		}
+	},
+	anagramwholehelp: [
+		"/aw [anagram], [category], [category], [category], ... returns a combination of words in those categories that fit within the anagram.",
+		"Categories must be one of the following: ability, item, move, pokemon",
+	],
+	
 	//provides list of possible moves
 	am: 'anagrammove',
 	anagrammove: function (target, room, user, connection, cmd, message) {
+		let showAll = true;
 		let anagramArray = target.split("");
 		let nameArray = [];
 		for (let move in Dex.data.Movedex) {
@@ -40,6 +70,7 @@ exports.commands = {
 	//provides list of possible pokemon
 	ap: 'anagrampokemon',
 	anagrampokemon: function (target, room, user, connection, cmd, message) {
+		let showAll = true;
 		let anagramArray = target.split("");
 		let nameArray = [];
 		for (let pokemon in Dex.data.Pokedex) {
@@ -66,6 +97,7 @@ exports.commands = {
 	//provides list of possible items
 	ai: 'anagramitem',
 	anagramitem: function (target, room, user, connection, cmd, message) {
+		let showAll = true;
 		let anagramArray = target.split("");
 		let nameArray = [];
 		for (let n in Dex.data.Items) {
@@ -93,6 +125,7 @@ exports.commands = {
 	//provides list of possible abilities
 	aa: 'anagramability',
 	anagramability: function (target, room, user, connection, cmd, message) {
+		let showAll = true;
 		let anagramArray = target.split("");
 		let nameArray = [];
 		for (let n in Dex.data.Abilities) {
@@ -207,6 +240,8 @@ exports.commands = {
 	minushelp: [
 		"/minus [anagram], [parameter], [parameter], ... returns anagram with letters from all parameters removed."
 	],
+	
+	
 
 	//used for Pokemon Countdown
 	longest: function (target, room, user, connection, cmd, message) {
